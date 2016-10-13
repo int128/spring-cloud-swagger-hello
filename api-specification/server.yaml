@@ -1,0 +1,26 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Hello World API
+basePath: /v1
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /hello-world:
+    get:
+      summary: Get Hello World
+      description: Say hello world.
+      responses:
+        200:
+          description: Hello World
+          schema:
+            $ref: '#/definitions/HelloWorld'
+
+definitions:
+  HelloWorld:
+    properties:
+      name:
+        type: string
