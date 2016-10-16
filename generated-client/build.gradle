@@ -1,0 +1,8 @@
+plugins {
+    id 'java'
+    id 'org.hidetake.swagger.codegen' version '1.0.0'
+}
+
+dependencies {
+    swaggerCodegen 'io.swagger:swagger-codegen-cli:2.2.1'
+}

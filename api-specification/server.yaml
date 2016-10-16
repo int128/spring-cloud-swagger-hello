@@ -3,10 +3,6 @@ info:
   version: 1.0.0
   title: Hello World API
 basePath: /v1
-consumes:
-  - application/json
-produces:
-  - application/json
 
 paths:
   /hello-world:

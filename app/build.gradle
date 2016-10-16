@@ -1,0 +1,19 @@
+plugins {
+    id 'groovy'
+}
+
+apply plugin: 'spring-boot'
+
+dependencies {
+    compile project(':generated-server')
+    compile project(':generated-client')
+
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    runtime 'ch.qos.logback:logback-core'
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testRuntime 'cglib:cglib-nodep:3.2.1'
+    testRuntime 'org.objenesis:objenesis:2.2'
+}

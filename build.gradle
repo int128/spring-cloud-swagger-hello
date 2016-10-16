@@ -7,38 +7,13 @@ buildscript {
     }
 }
 
-plugins {
-    id 'groovy'
-    id 'org.hidetake.swagger.codegen' version '1.0.0'
-}
-apply plugin: 'spring-boot'
+allprojects {
+    repositories {
+        jcenter()
+    }
 
-repositories {
-    jcenter()
-}
-
-dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.slf4j:slf4j-api:1.7.7'
-    runtime 'ch.qos.logback:logback-classic:1.1.2'
-
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-    testRuntime 'cglib:cglib-nodep:3.2.1'
-    testRuntime 'org.objenesis:objenesis:2.2'
-
-    swaggerCodegen 'io.swagger:swagger-codegen-cli:2.2.1'
-}
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-task generateServer(type: SwaggerCodegen) {
-    language = 'spring'
-    inputFile = file('api-specification/server.yaml')
-    configFile = file('api-specification/server.swagger.json')
-    outputDir = file("$buildDir/generated-server")
-    doFirst {
-        delete outputDir
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }

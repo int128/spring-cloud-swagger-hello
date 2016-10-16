@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'org.hidetake.swagger.codegen' version '1.0.0'
+}
+
+apply plugin: 'spring-boot'
+
+dependencies {
+    compile 'org.springframework:spring-web'
+    compile 'io.swagger:swagger-annotations:1.5.10'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.3'
+    swaggerCodegen 'io.swagger:swagger-codegen-cli:2.2.1'
+}
+
+task generate(type: SwaggerCodegen) {
+    language = 'spring'
+    inputFile = project(':api-specification').file('server.yaml')
+    configFile = file('swagger.json')
+    outputDir = file("$buildDir/generated")
+    systemProperties models: '', apis: ''
+    doFirst {
+        delete outputDir
+    }
+}
+
+sourceSets.main.java.srcDir "$buildDir/generated/src/main/java"
+compileJava.dependsOn generate
+bootRepackage.enabled = false

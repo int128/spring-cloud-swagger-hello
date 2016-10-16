@@ -1,0 +1,4 @@
+include 'api-specification'
+include 'generated-client'
+include 'generated-server'
+include 'app'
