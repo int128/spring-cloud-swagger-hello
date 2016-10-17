@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.hidetake.swagger.codegen' version '1.0.0'
+    id 'org.hidetake.swagger.codegen' version '1.1.0'
 }
 
 apply plugin: 'spring-boot'
@@ -17,7 +17,7 @@ task generate(type: SwaggerCodegen) {
     inputFile = project(':api-specification').file('server.yaml')
     configFile = file('swagger.json')
     outputDir = file("$buildDir/generated")
-    systemProperties models: '', apis: ''
+    components = ['models', 'apis']
     doFirst {
         delete outputDir
     }
