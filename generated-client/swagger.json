@@ -1,0 +1,8 @@
+{
+  "modelPackage": "example.client.petstore.model",
+  "apiPackage": "example.client.petstore.api",
+  "invokerPackage": "example.client.petstore",
+  "library": "spring-cloud",
+  "dateLibrary": "java8",
+  "hideGenerationTimestamp": true
+}

@@ -1,8 +1,29 @@
 plugins {
     id 'java'
-    id 'org.hidetake.swagger.codegen' version '1.0.0'
+    id 'groovy'
+    id 'org.hidetake.swagger.codegen' version '1.1.0'
 }
 
+apply plugin: 'spring-boot'
+
 dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.springframework.cloud:spring-cloud-starter-feign:1.2.0.RELEASE'
+    compile 'io.swagger:swagger-annotations:1.5.10'
     swaggerCodegen 'io.swagger:swagger-codegen-cli:2.2.1'
 }
+
+task generate(type: SwaggerCodegen) {
+    language = 'spring'
+    inputFile = project(':api-specification').file('petstore-client.yaml')
+    configFile = file('swagger.json')
+    outputDir = file("$buildDir/generated")
+    components = ['models', 'apis']
+    doFirst {
+        delete outputDir
+    }
+}
+
+sourceSets.main.groovy.srcDirs "$buildDir/generated/src/main/java"
+compileJava.dependsOn generate
+bootRepackage.enabled = false
