@@ -16,6 +16,7 @@ task generate(type: SwaggerCodegen) {
     language = 'spring'
     inputFile = project(':api-specification').file('server.yaml')
     configFile = file('swagger.json')
+    templateDir = file('template')
     outputDir = file("$buildDir/generated")
     components = ['models', 'apis']
     doFirst {
