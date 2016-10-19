@@ -5,23 +5,22 @@ info:
 basePath: /api/v1
 
 paths:
-  /items:
+  /products:
     get:
-      summary: Get all items
+      summary: Get all products
       responses:
         200:
-          description: Items
+          description: Products
           schema:
-            $ref: '#/definitions/Items'
+            $ref: '#/definitions/Products'
 
 definitions:
-  Items:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Item'
-  Item:
+  Products:
+    type: array
+    items:
+      $ref: '#/definitions/Product'
+
+  Product:
     properties:
       id:
         type: integer
